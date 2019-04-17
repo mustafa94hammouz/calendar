@@ -1,0 +1,230 @@
+//@import "../../assets/stylesheets/themes/colors/colors";
+//@import "../../assets/stylesheets/abstracts/mixins";
+$primary-light-color : #bed5ff;
+$primary-color : #f9fffb;
+$white : #7187aa;
+$emperor-approx-color: #fff;
+$primary-color-dark: #fff;
+$gray-approx-color: #000000;
+$alizarin-crimson-approx-color: #000000;
+
+.MainCalendar {
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 7px;
+  background-color: $primary-light-color;
+
+  .CalendarHeader {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 30%;
+    color: $primary-color;
+
+    .HeaderTitle {
+      width: 100%;
+      padding: 10px;
+      white-space: nowrap;
+      font-size: 1.2em;
+      background-color: $primary-light-color;
+
+      .HeaderText {
+        display: flex;
+        height: 100%;
+        flex: 5;
+
+        .MonthLabel {
+          color: $primary-color;
+          font-weight: 500;
+        }
+      }
+    }
+
+    .DaysHeader {
+      width: 100%;
+      padding: 5px;
+      background-color: $primary-light-color;
+    }
+
+    .ButtonContainer {
+      width: 100%;
+      height: 30%;
+      background-color: $primary-color;
+
+      .EventButton {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+
+        &:hover {
+          background-color: $white;
+          color: $primary-color;
+        }
+      }
+    }
+  }
+
+  .DaysContainer {
+    width: 100%;
+    height: 70%;
+    background: $white;
+
+    .Week {
+      padding: 5px;
+    }
+  }
+}
+
+.Row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  height: 100%;
+  transition: all 0.4s ease-in-out 0s;
+}
+
+.Day {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  height: 100%;
+
+  .DayNumber {
+    display: flex;
+    width: 100%;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    color: $emperor-approx-color;
+    border: 1px solid $white;
+  }
+
+  &:hover {
+
+    .DayNumber {
+      width: 100%;
+      height: 80px;
+      background-color: $primary-light-color;
+      color: $primary-color-dark;
+      transition: background-color 0.2s ease-in-out 0s;
+      cursor: pointer;
+    }
+  }
+
+  &.today {
+
+    .DayNumber {
+      color: $primary-color-dark;
+      border: 1px solid $primary-color-dark;
+    }
+  }
+
+  &.selected {
+
+    .DayNumber {
+      width: 100%;
+      height: 80px;
+      background-color: $primary-color-dark;
+      color: $white;
+      border: 1px solid $primary-color-dark;
+    }
+  }
+
+  &.DifferentMonth {
+    opacity: 0.5;
+  }
+
+  &.BeforeToday {
+    opacity: 0.1;
+
+    &:hover,
+    &:active,
+    &:focus {
+
+      .DayNumber {
+        cursor: not-allowed;
+        width: 70%;
+        background-color: $white;
+        color: $primary-color-dark;
+        transition: background-color 0.2s ease-in-out 0s;
+      }
+    }
+  }
+}
+
+.arrowDisabled {
+  color: $gray-approx-color;
+  opacity: .2;
+}
+
+.RedCircle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  right: 8px;
+  top: 3px;
+  background-color: $alizarin-crimson-approx-color;
+  border-radius: 50%;
+
+  //@include xs {
+  //  right: 10px;
+  //}
+  //
+  //@include sm {
+  //  right: 12px;
+  //}
+}
+
+.ArrowWrapper {
+  background-color: $primary-light-color;
+  border: none;
+  color: $primary-color;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: $primary-light-color !important;
+    border: none !important;
+    color: $primary-color !important;
+    box-shadow: 0 0 0 0 !important;
+  }
+}
+
+.WhiteCircle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  right: 8px;
+  top: 3px;
+  background-color: $white;
+  border-radius: 50%;
+
+  //@include xs {
+  //  right: 10px;
+  //}
+  //
+  //@include sm {
+  //  right: 12px;
+  //}
+}
+
+.ContinueArrow {
+  font-size: 12px;
+  cursor: pointer;
+}
+
+li{
+  text-decoration: none;
+}

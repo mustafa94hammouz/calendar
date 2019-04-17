@@ -1,0 +1,38 @@
+@font-face {
+  font-family: 'airdata';
+  src:  url('fonts/airdata.eot?svyyxg');
+  src:  url('fonts/airdata.eot?svyyxg#iefix') format('embedded-opentype'),
+    url('fonts/airdata.ttf?svyyxg') format('truetype'),
+    url('fonts/airdata.woff?svyyxg') format('woff'),
+    url('fonts/airdata.svg?svyyxg#airdata') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.icons {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'airdata' !important;
+  font-size: 50px;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.left-arrow:before {
+  content: "\e91c";
+  margin-left:40%;
+}
+.right-arrow:before {
+  content: "\e91d";
+  margin-right: 40%;
+}
+li{
+  text-decoration: none;
+}
