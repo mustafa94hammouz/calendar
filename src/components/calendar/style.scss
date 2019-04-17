@@ -148,7 +148,7 @@ $alizarin-crimson-approx-color: #000000;
 
   &.BeforeToday {
     opacity: 0.1;
-
+    pointer-events: none;
     &:hover,
     &:active,
     &:focus {
