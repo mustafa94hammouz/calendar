@@ -117,80 +117,52 @@ class Calendar extends React.Component {
 
         let allEvents = [];
 
-        var event1 = {
+        let event1 = {
             title:
                 "Press the Add button and enter a name for your event. P.S you can delete me by pressing me!",
             date: moment(),
             dynamic: false
         };
 
-        var event2 = {
+        let event2 = {
             title: "Event 2 - Meeting",
             date: moment().startOf("day").subtract(2, "d").add(2, "h"),
             dynamic: false
         };
 
-        var event3 = {
+        let event3 = {
             title: "Event 3 - Cinema",
             date: moment().startOf("day").subtract(7, "d").add(18, "h"),
             dynamic: false
         };
 
-        var event4 = {
+        let event4 = {
             title: "Event 4 - Theater",
             date: moment().startOf("day").subtract(16, "d").add(20, "h"),
             dynamic: false
         };
 
-        var event5 = {
+        let event5 = {
             title: "Event 5 - Drinks",
-            date: moment().startOf("day").subtract(2, "d").add(12, "h"),
+            date: moment().startOf("day").add(2, "d").add(12, "h"),
             dynamic: false
         };
 
-        var event6 = {
+        let event6 = {
             title: "Event 6 - Diving",
-            date: moment().startOf("day").subtract(2, "d").add(13, "h"),
+            date: moment().startOf("day").add(1, "d").add(13, "h"),
             dynamic: false
         };
 
-        var event7 = {
-            title: "Event 7 - Tennis",
-            date: moment().startOf("day").subtract(2, "d").add(14, "h"),
-            dynamic: false
-        };
-
-        var event8 = {
-            title: "Event 8 - Swimmming",
-            date: moment().startOf("day").subtract(2, "d").add(17, "h"),
-            dynamic: false
-        };
-
-        var event9 = {
-            title: "Event 9 - Chilling",
-            date: moment().startOf("day").subtract(2, "d").add(16, "h"),
-            dynamic: false
-        };
-
-        var event10 = {
-            title:
-                "Hello World",
-            date: moment().startOf("day").add(5, "h"),
-            dynamic: false
-        };
 
         allEvents.push(event1);
         allEvents.push(event2);
         allEvents.push(event3);
         allEvents.push(event4);
         allEvents.push(event5);
-        allEvents.push(event6);
-        allEvents.push(event7);
-        allEvents.push(event8);
-        allEvents.push(event9);
-        allEvents.push(event10);
 
-        for (var i = 0; i < allEvents.length; i++) {
+
+        for (let i = 0; i < allEvents.length; i++) {
             monthEvents.push(allEvents[i]);
         }
 
@@ -254,7 +226,7 @@ class Week extends React.Component {
         for (let i = 0; i < 7; i++) {
             let dayHasEvents = false;
 
-            for (var j = 0; j < monthEvents.length; j++) {
+            for (let j = 0; j < monthEvents.length; j++) {
                 if (monthEvents[j].date.isSame(date, "day")) {
                     dayHasEvents = true;
                 }
@@ -273,7 +245,9 @@ class Week extends React.Component {
             days.push(<Day key={i*k}
                            day={day}
                            selected={selected}
-                           select={select} />);
+                           select={select}
+                           monthEvents={monthEvents}
+                     />);
             date = date.clone();
             date.add(1, "d");
         }
@@ -290,6 +264,7 @@ class Day extends React.Component {
         let day = this.props.day;
         let selected = this.props.selected;
         let select = this.props.select;
+        let monthEvents = this.props.monthEvents;
         return (
             <div
                 className={
@@ -301,10 +276,12 @@ class Day extends React.Component {
                     (day.hasEvents && day.isCurrentMonth ? " HasEvents " : "")
                 }
                 onClick={() => select(day)}>
-                {day.isCurrentMonth &&
-                <div className={
-                    (day.hasEvents ? day.date.isSame(selected) ? " WhiteCircle" : " RedCircle" : "") }> </div>
+                {day.isCurrentMonth && monthEvents.map((circle,index)=>(
+                    <div key={index} className={
+                        (day.hasEvents ? " WhiteCircle" : "" ) }> </div>
+                ))
                 }
+
                 <div className="DayNumber">{day.number}</div>
             </div>
         );
