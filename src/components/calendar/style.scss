@@ -203,10 +203,10 @@ $alizarin-crimson-approx-color: #000000;
 
 .WhiteCircle {
   position: absolute;
-  width: 15px;
-  height: 15px;
-  right: -5px;
-  top: 60px;
+  width: 35px;
+  height: 35px;
+  right: 3px;
+  top: 40px;
   background-color: darkgreen;
   border-radius: 50%;
 
@@ -217,21 +217,6 @@ $alizarin-crimson-approx-color: #000000;
   //@include sm {
   //  right: 12px;
   //}
-}
-.WhiteCircle:nth-child(1){
-  margin-right:18px;
-}
-.WhiteCircle:nth-child(2){
-  margin-right:36px;
-}
-.WhiteCircle:nth-child(3){
-  margin-right:54px;
-}
-.WhiteCircle:nth-child(4){
-  margin-right:72px;
-}
-.WhiteCircle:nth-child(5){
-  margin-right:90px;
 }
 
 .ContinueArrow {
