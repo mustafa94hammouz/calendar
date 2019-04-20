@@ -1,0 +1,20 @@
+$primary-light-color : #bed5ff;
+
+.leftColumn{
+  width: 95%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  background-color: $primary-light-color;
+
+  .dayNum{
+    font-size: 180px;
+    width:50%;
+    margin:auto;
+  }
+  .dayName{
+    width: 50%;
+    font-size: 50px;
+    margin: -40px auto auto auto;
+  }
+}

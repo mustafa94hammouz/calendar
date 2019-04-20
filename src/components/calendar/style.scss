@@ -8,8 +8,13 @@ $primary-color-dark: #fff;
 $gray-approx-color: #000000;
 $alizarin-crimson-approx-color: #000000;
 
+.root{
+  flex-grow: 1;
+}
+
+
 .MainCalendar {
-  width: 50%;
+  width: 95%;
   display: flex;
   flex-wrap: wrap;
   padding: 7px;

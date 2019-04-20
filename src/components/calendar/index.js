@@ -2,8 +2,11 @@ import React from "react";
 
 import { Button } from "reactstrap";
 import moment from "moment";
+import Grid from '@material-ui/core/Grid';
+import LeftColumn from "../leftColumn";
 import "../../icons/style.css";
 import "./style.scss";
+
 
 class Calendar extends React.Component {
     constructor(props) {
@@ -16,6 +19,7 @@ class Calendar extends React.Component {
             leftArrowDisabled: false,
             rightArrowDisabled: false,
             allPreScheduledRides: null,
+            dayEvents:[]
 
 
         };
@@ -30,6 +34,7 @@ class Calendar extends React.Component {
     componentDidMount() {
         this.initialiseEvents();
     }
+
 
 
     previous() {
@@ -49,11 +54,12 @@ class Calendar extends React.Component {
         });
     }
 
-    select(day) {
+    select(day, dayEvents) {
         if(day.isCurrentMonth) {
             this.setState({
                 selectedMonth: day.date,
                 selectedDay: day.date.clone(),
+                dayEvents: dayEvents
             });
         }
     }
@@ -104,7 +110,7 @@ class Calendar extends React.Component {
                       currentMonthView={currentMonthView}
                       monthEvents={monthEvents}
                       selected={currentSelectedDay}
-                      select={day => this.select(day)}/>
+                      select={(day,dayEvents) => this.select(day, dayEvents)}/>
             );
             previousCurrentNextView.add(1, "w");
             numberOfWeeks++;
@@ -168,7 +174,10 @@ class Calendar extends React.Component {
 
     render() {
         return (
-            <section className="MainCalendar">
+                <Grid  className="root" container spacing={0}>
+                   <LeftColumn dayEventslist={this.state.dayEvents}/>
+                    <Grid item xs={6}>
+                        <section className="MainCalendar">
                 <header className="CalendarHeader">
                     <div className="Row HeaderTitle">
                         <Button className="ArrowWrapper">
@@ -189,7 +198,12 @@ class Calendar extends React.Component {
                 <div className="DaysContainer">
                     {this.renderWeeks()}
                 </div>
-            </section>
+                        </section>
+                    </Grid>
+
+                </Grid>
+
+
         );
     }
 }
@@ -269,32 +283,12 @@ class Day extends React.Component {
         }
     }
 
-     groupEvents(key) {
-         let monthEvents = this.props.monthEvents;
-        return monthEvents.reduce(function(rv, x) {
-            (rv[x[key]] = rv[x[key]] || []).push(x);
-            return rv;
-        }, {});
-
-    }
-
-    printEvents(dayEvents){
-    for(let i=0;i<dayEvents.length;i++){
-        console.log(dayEvents[i].title);
-    }
-    }
-
     render() {
         let day = this.props.day;
         let selected = this.props.selected;
         let select = this.props.select;
         let numOfEvents = this.props.numOfEvents;
         let dayEvents = this.props.dayEvents;
-            if(day.hasEvents){
-                // console.log(Object.values(this.groupEvents('date')));
-                // console.log(numOfEvents,dayEvents);
-            }
-
 
         return (
             <div
@@ -307,8 +301,7 @@ class Day extends React.Component {
                     (day.hasEvents && day.isCurrentMonth ? " HasEvents " : "")
                 }
                 onClick={() => {
-                   select(day);
-                   this.printEvents(dayEvents);
+                   select(day, dayEvents);
                 }}>
                 <div className="DayNumber">{day.number}</div>
                 {numOfEvents > 0 ?  <div className="WhiteCircle" > {numOfEvents} </div> : ''}
