@@ -1,9 +1,9 @@
 //@import "../../assets/stylesheets/themes/colors/colors";
 //@import "../../assets/stylesheets/abstracts/mixins";
-$primary-light-color : #bed5ff;
+$primary-light-color : #fff;
 $primary-color : #f9fffb;
-$white : #7187aa;
-$emperor-approx-color: #fff;
+$white : #e4e6e5;
+$emperor-approx-color: #000000;
 $primary-color-dark: #fff;
 $gray-approx-color: #000000;
 $alizarin-crimson-approx-color: #000000;
@@ -19,6 +19,8 @@ $alizarin-crimson-approx-color: #000000;
   flex-wrap: wrap;
   padding: 7px;
   background-color: $primary-light-color;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
 
   .CalendarHeader {
     display: flex;
@@ -32,7 +34,7 @@ $alizarin-crimson-approx-color: #000000;
       padding: 10px;
       white-space: nowrap;
       font-size: 1.2em;
-      background-color: $primary-light-color;
+      background-color: $primary-color-dark;
 
       .HeaderText {
         display: flex;
@@ -40,7 +42,7 @@ $alizarin-crimson-approx-color: #000000;
         flex: 5;
 
         .MonthLabel {
-          color: $primary-color;
+          color: #848484;
           font-weight: 500;
         }
       }
@@ -66,7 +68,7 @@ $alizarin-crimson-approx-color: #000000;
 
         &:hover {
           background-color: $white;
-          color: $primary-color;
+          color: black;
         }
       }
     }
@@ -75,7 +77,7 @@ $alizarin-crimson-approx-color: #000000;
   .DaysContainer {
     width: 100%;
     height: 70%;
-    background: $white;
+    background: $primary-light-color ;
 
     .Week {
       padding: 5px;
@@ -112,7 +114,6 @@ $alizarin-crimson-approx-color: #000000;
     height: 80px;
     justify-content: center;
     color: $emperor-approx-color;
-    border: 1px solid $white;
   }
 
   &:hover {
@@ -120,8 +121,8 @@ $alizarin-crimson-approx-color: #000000;
     .DayNumber {
       width: 100%;
       height: 80px;
-      background-color: $primary-light-color;
-      color: $primary-color-dark;
+      background-color: #e4e6e5;
+      color: black;
       transition: background-color 0.2s ease-in-out 0s;
       cursor: pointer;
     }
@@ -130,7 +131,7 @@ $alizarin-crimson-approx-color: #000000;
   &.today {
 
     .DayNumber {
-      color: $primary-color-dark;
+      color: black;
       border: 1px solid $primary-color-dark;
     }
   }
@@ -140,9 +141,9 @@ $alizarin-crimson-approx-color: #000000;
     .DayNumber {
       width: 100%;
       height: 80px;
-      background-color: $primary-color-dark;
-      color: $white;
-      border: 1px solid $primary-color-dark;
+      background-color: #e4e6e5;
+      color: black;
+
     }
   }
 
@@ -160,8 +161,8 @@ $alizarin-crimson-approx-color: #000000;
       .DayNumber {
         cursor: not-allowed;
         width: 70%;
-        background-color: $white;
-        color: $primary-color-dark;
+        background-color: black;
+        color: black;
         transition: background-color 0.2s ease-in-out 0s;
       }
     }
@@ -181,19 +182,11 @@ $alizarin-crimson-approx-color: #000000;
   top: 3px;
   background-color: $alizarin-crimson-approx-color;
   border-radius: 50%;
-
-  //@include xs {
-  //  right: 10px;
-  //}
-  //
-  //@include sm {
-  //  right: 12px;
-  //}
 }
 
 .ArrowWrapper {
   background-color: $primary-light-color;
-  border: none;
+  border: none !important;
   color: $primary-color;
 
   &:hover,
@@ -212,16 +205,8 @@ $alizarin-crimson-approx-color: #000000;
   height: 35px;
   right: 3px;
   top: 40px;
-  background-color: darkgreen;
+  background-color: rgb(123, 126, 254);
   border-radius: 50%;
-
-  //@include xs {
-  //  right: 10px;
-  //}
-  //
-  //@include sm {
-  //  right: 12px;
-  //}
 }
 
 .ContinueArrow {
@@ -231,4 +216,8 @@ $alizarin-crimson-approx-color: #000000;
 
 li{
   text-decoration: none;
+}
+.right-arrow, .left-arrow{
+  color: black;
+  cursor: pointer;
 }

@@ -11,7 +11,6 @@ import "./style.scss";
 class Calendar extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
             selectedMonth: moment(),
             selectedDay: moment().startOf("day"),
@@ -19,11 +18,10 @@ class Calendar extends React.Component {
             leftArrowDisabled: false,
             rightArrowDisabled: false,
             allPreScheduledRides: null,
-            dayEvents:[]
-
-
+            dayEvents:[],
+            dayNumber: '',
+            dayName: ''
         };
-
         this.previous = this.previous.bind(this);
         this.next = this.next.bind(this);
         this.showCalendar = this.showCalendar.bind(this);
@@ -33,6 +31,18 @@ class Calendar extends React.Component {
 
     componentDidMount() {
         this.initialiseEvents();
+        let currentDayEvents=[];
+        this.state.selectedMonthEvents.map((event)=>{
+            if(event.date.format('LL') === moment().startOf("day").format('LL')){
+                currentDayEvents.push(event);
+            }
+            this.setState({
+                dayNumber: moment().date().toString(),
+                dayName: moment().startOf("day").format('dddd').toString(),
+                dayEvents: currentDayEvents,
+            })
+        });
+
     }
 
 
@@ -59,8 +69,10 @@ class Calendar extends React.Component {
             this.setState({
                 selectedMonth: day.date,
                 selectedDay: day.date.clone(),
-                dayEvents: dayEvents
-            });
+                dayEvents: dayEvents,
+                dayNumber: day.number,
+                dayName: day.name
+            },);
         }
     }
 
@@ -125,7 +137,7 @@ class Calendar extends React.Component {
 
         let event1 = {
             title:
-                "Press the Add button and enter a name for your event. P.S you can delete me by pressing me!",
+                "first Event of the current day",
             date: moment().startOf("day"),
             dynamic: false
         };
@@ -153,6 +165,29 @@ class Calendar extends React.Component {
             date: moment().startOf("day").add(3, "d"),
             dynamic: false
         };
+        let event6 = {
+            title: "Event 2 - Meeting",
+            date: moment().startOf("day").add(1, "d"),
+            dynamic: false
+        };
+
+        let event7 = {
+            title: "Event 3 - Cinema",
+            date: moment().startOf("day").add(1, "d"),
+            dynamic: false
+        };
+        let event8 = {
+            title:
+                "second event",
+            date: moment().startOf("day"),
+            dynamic: false
+        };
+        let event9 = {
+            title:
+                "second event",
+            date: moment().startOf("day").add(35, "d"),
+            dynamic: false
+        };
 
 
 
@@ -161,6 +196,10 @@ class Calendar extends React.Component {
         allEvents.push(event3);
         allEvents.push(event4);
         allEvents.push(event5);
+        allEvents.push(event6);
+        allEvents.push(event7);
+        allEvents.push(event8);
+        allEvents.push(event9);
 
 
         for (let i = 0; i < allEvents.length; i++) {
@@ -175,7 +214,12 @@ class Calendar extends React.Component {
     render() {
         return (
                 <Grid  className="root" container spacing={0}>
-                   <LeftColumn dayEventslist={this.state.dayEvents}/>
+                   <LeftColumn
+                       dayEventslist={this.state.dayEvents}
+                       dayName={this.state.dayName}
+                       dayNumber={this.state.dayNumber}
+
+                   />
                     <Grid item xs={6}>
                         <section className="MainCalendar">
                 <header className="CalendarHeader">
@@ -245,7 +289,7 @@ class Week extends React.Component {
             }
 
             let day = {
-                name: date.format("dd").substring(0, 1),
+                name: date.format("dddd"),
                 number: date.date(),
                 isCurrentMonth: date.month() === currentMonthView.month(),
                 isBeforeToday: date.isBefore(new Date(), "day") ,
@@ -253,7 +297,7 @@ class Week extends React.Component {
                 date: date,
                 hasEvents: dayHasEvents,
                 numOfEvents: numOfEvents,
-                dayEvents: dayEvents
+                dayEvents: dayEvents,
             };
             k++;
             days.push(<Day key={i*k}
@@ -263,6 +307,8 @@ class Week extends React.Component {
                            monthEvents={monthEvents}
                            numOfEvents={numOfEvents}
                            dayEvents={dayEvents}
+                           dayName={day.name}
+                           dayNumber={day.number}
                      />);
             date = date.clone();
             date.add(1, "d");
@@ -289,6 +335,8 @@ class Day extends React.Component {
         let select = this.props.select;
         let numOfEvents = this.props.numOfEvents;
         let dayEvents = this.props.dayEvents;
+        let dayName = this.props.dayName;
+        let dayNumber = this.props.dayNumber;
 
         return (
             <div
@@ -301,7 +349,7 @@ class Day extends React.Component {
                     (day.hasEvents && day.isCurrentMonth ? " HasEvents " : "")
                 }
                 onClick={() => {
-                   select(day, dayEvents);
+                   select(day, dayEvents, dayName, dayNumber);
                 }}>
                 <div className="DayNumber">{day.number}</div>
                 {numOfEvents > 0 ?  <div className="WhiteCircle" > {numOfEvents} </div> : ''}

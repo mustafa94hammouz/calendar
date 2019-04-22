@@ -6,13 +6,18 @@ class LeftColumn extends Component {
     constructor(props){
         super(props);
         this.state = {
-
-        }
+            newDate:false
+        };
         this.renderDayEventslist = this.renderDayEventslist.bind(this);
+    }
+    componentDidMount() {
+        this.setState({
+            newDate: true
+        })
     }
 
     renderDayEventslist(){
-        let list = []
+        let list = [];
         for(let i=0; i<this.props.dayEventslist.length; i++){
             list.push(<li key={i}>{this.props.dayEventslist[i].title}</li>)
         }
@@ -26,15 +31,17 @@ class LeftColumn extends Component {
         return (
             <Grid  item xs={6}>
                 <section className="leftColumn">
-                    <h1 className="dayNum">27</h1>
-                    <h2 className='dayName'> Thursday </h2>
-                    <ul>
-                    {this.renderDayEventslist()}
-                    </ul>
+                    <h1 className='dayNum'>{this.props.dayNumber}</h1>
+                    <h2 className='dayName'>{this.props.dayName}</h2>
+                    {this.props.dayEventslist.length ? <ul>
+                        {this.renderDayEventslist()}
+                    </ul> : <ul><p>There is no events in this date</p></ul>}
+
                 </section>
             </Grid>
         );
     }
+
 }
 
 export default LeftColumn;

@@ -1,20 +1,35 @@
-$primary-light-color : #bed5ff;
-
+$primary-light-color : #E7ECED;
+$gray-color: #848484;
 .leftColumn{
-  width: 95%;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   background-color: $primary-light-color;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
 
   .dayNum{
+    color: #313131;
     font-size: 180px;
     width:50%;
     margin:auto;
   }
   .dayName{
+    color: $gray-color;
     width: 50%;
     font-size: 50px;
     margin: -40px auto auto auto;
+  }
+  ul {
+
+    height: 357px;
+    overflow: hidden;
+    overflow-y: auto;
+  }
+  ul p {
+    color:black;
+  }
+  ul li{
+    list-style: decimal;
   }
 }
