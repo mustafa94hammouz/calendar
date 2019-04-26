@@ -19,7 +19,7 @@ class LeftColumn extends Component {
     renderDayEventslist(){
         let list = [];
         for(let i=0; i<this.props.dayEventslist.length; i++){
-            list.push(<li key={i}>{this.props.dayEventslist[i].title}</li>)
+            list.push(<li className={i%2 ? 'odd': 'even'} key={i}>{this.props.dayEventslist[i].title} <p> 09:00 - 11:00</p></li> )
         }
         return list
     }
@@ -35,7 +35,7 @@ class LeftColumn extends Component {
                     <h2 className='dayName'>{this.props.dayName}</h2>
                     {this.props.dayEventslist.length ? <ul>
                         {this.renderDayEventslist()}
-                    </ul> : <ul><p>There is no events in this date</p></ul>}
+                    </ul> : <ul><p>There is no events in this date</p> </ul>}
 
                 </section>
             </Grid>

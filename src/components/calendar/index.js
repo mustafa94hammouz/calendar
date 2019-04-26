@@ -138,7 +138,7 @@ class Calendar extends React.Component {
         let event1 = {
             title:
                 "first Event of the current day",
-            date: moment().startOf("day"),
+            date: moment('2019-04-30'), //this how the data should come
             dynamic: false
         };
 

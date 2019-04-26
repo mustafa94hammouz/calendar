@@ -28,8 +28,15 @@ $gray-color: #848484;
   }
   ul p {
     color:black;
+    margin: auto;
   }
   ul li{
     list-style: decimal;
+  }
+ .even{
+    background-color: #F3B8F8;
+  }
+ .odd{
+    background-color: #AFABFE;
   }
 }
